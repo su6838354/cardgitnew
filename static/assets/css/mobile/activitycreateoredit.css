@@ -1,0 +1,54 @@
+.out-wrap{
+    padding: .5rem 0;
+}
+.property-label{
+    font-size: .9rem;
+    color: #333;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    padding-left: 5%;
+}
+textarea{
+    width: 86%;
+    height: 4rem;
+    margin-left: 5%;
+    border: 1px solid #f08300;
+    border-radius: .4rem;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    padding: 2%;
+    resize: none;
+    overflow: hidden;
+}
+.property-content{
+    height: 15rem;
+}
+.create-confirm-btn{
+    height: 2rem;
+    text-align: center;
+    background-color: #f08300;
+    width: 60%;
+    margin: .85rem auto;
+    line-height: 2rem;
+    color: #fff;
+    border-radius: .4rem;
+    font-size: .9rem;
+}
+.create-confirm-btn:active{
+    background-color: #bbb;
+}
+.btnn{
+    font-size: .65rem;
+    text-align: center;
+    background-color: #e03a3c;
+    color: #Fff;
+    line-height: 1.4rem;
+    display: inline-block;
+    padding: 0 .4rem;
+    margin-left: 1rem;
+    top: -0.1rem;
+    position: relative;
+}
+.green{
+    background-color: green;
+}

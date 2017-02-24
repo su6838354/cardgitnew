@@ -1,0 +1,47 @@
+.profile-box{
+    width: 86%;
+    height: auto;
+    padding-bottom: 1.3rem;
+    margin: 1.3rem auto 0;
+    /*border: .24rem solid #47a9f2;*/
+    border: .24rem solid #f08300;
+    border-radius: .8rem;
+    -webkit-border-radius: .8rem;
+    -moz-border-radius: .8rem;
+}
+.profile-box .property{
+    text-align: left;
+	margin-top: .8rem;
+    color: #444;
+    font: 400 .9rem/.9rem "Helvetica Neue",Helvetica,Tahoma,Arial,"Microsoft YaHei",Sans-serif !important;
+}
+.profile-box .property label{
+	width: 26%;
+    display: inline-block;
+    color: #333;
+    text-align: right;
+    font: 400 .9rem/.91rem "Helvetica Neue",Helvetica,Tahoma,Arial,"Microsoft YaHei",Sans-serif !important;
+}
+
+#qrcode{
+    margin: 1.4rem auto;
+    width: 7rem;
+    height: 7rem;
+    visibility: hidden;
+}
+
+#getval{
+	width: 80%;
+	height: 90px;
+	max-width: 300px;
+}	
+#send{
+	border: 1px solid #ffffff;
+	border-radius: 7px;
+	width: 100px;
+	height: 30px;
+	background-color: #ccc;
+}
+.title{
+	float: left;
+}

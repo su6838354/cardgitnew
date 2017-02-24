@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>活动列表</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="format-detection" content="telephone=no,address=no,email=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../static/assets/css/mobile/common.css?vId=170219v1" />
+		<link rel="stylesheet" href="../../static/assets/css/mobile/activities.css?vId=170219v1" />
+	</head>
+	<body>
+
+		<div class="out-wrap">
+			<div class="activity-tab">
+				<div class="tab text-elip"><a class="t-down"></a>发布方筛选</div>
+				<div class="tab text-elip"><a class="t-down"></a>快速筛选</div>
+				<div class="items">
+					<a data-pid="undefined">不限</a>
+				</div>
+				 <div class="items">
+					<a data-id="undefined">不限</a>
+				</div>
+			</div>
+			<div class="j_activities_box">
+				<ul class="userlist j_activities pTop25"></ul>
+				<div class="thinner-border"></div>
+				<div class="more j_loadmore"><img class="loading-img" src="../../static/assets/images/mobile/loading.jpg"><span>正在加载...</span></div>
+			</div>
+			<div class="create-btn j_create_btn" style="display: none;"><p style="margin-top:.5rem">发布</p><p>活动</p></div>
+		</div>
+
+		<script type="text/javascript" src="../../static/assets/js/mobile/share.js?vId=170219v1" ></script>
+		<script type="text/javascript" src="../../static/assets/js/mobile/activities.js?vId=170219v1" ></script>
+		<script type="text/javascript">	
+			$(document).ready(function() {
+				loading();
+				p.init();
+			});
+		</script>
+		<script>
+		</script>
+	</body>
+</html>
+
+
+

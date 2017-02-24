@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css" media="screen">
+			.badges{
+				margin-top: 25px;
+				width: 1275px;
+				height: 400px;
+			}
+			.badge{
+				float: left;
+				margin-left: 10px;
+				width: 400px;
+				height: 400px;
+				background-image: url(assets/images/badge/bg1.jpg);
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center; 
+			}
+			.qrcode{
+				padding: 5px;
+			    width: 94px;
+			    top: 203px;
+			    left: 211px;
+			    position: relative;
+			    height: 94px;
+				background-color: #fff;
+				float: left;
+			}
+			.name{
+				/*font-size: 29px;
+				font-weight: 700;
+				font-family: 'Microsof YaHei';
+			    top: 239px;
+    			left: -24px;
+			    position: relative;
+			    float: left;
+			    letter-spacing: 4px;*/
+			    font-size: 29px;
+			    font-weight: 700;
+			    font-family: 'Microsof YaHei';
+			    top: 267px;
+			    position: absolute;
+			    margin-left: 96px;
+			    letter-spacing: 4px;
+			}
+			.flagNumber{
+				font-size: 12px;
+			    font-weight: 900;
+			    font-family: monospace;
+			    top: 309px;
+			    left: 113px;
+			    position: relative;
+			    float: left;
+			}
+			.select-area{
+				padding: 30px 0;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="badges">
+			<!-- <div class="badge" style="background-image: url(assets/images/badge/bg1-1.png);">
+				<div class="qrcode"></div>
+					<div class="flagNumber">16000001</div>
+				<div class="name">张三丰</div>
+			</div>
+			<div class="badge"></div>
+			<div class="badge"></div> -->
+		</div>
+		<div class="select-area">
+			<!-- <select class="">
+				<option value="Users" selected="selected">用户</option>
+				<option value="Admins">居委/单位</option>
+			</select> -->
+			<select class="j_admins">
+				<option value="Users" selected="selected">请选择所在单位</option>
+			</select>
+			<!-- <select class="" style="margin-left: 10px;">
+				<option value="bg1-1" selected="selected">团员/党员</option>
+				<option value="bg2-2">群众</option>
+			</select> -->
+		</div>
+        <div class="pagenation clearboth j_pagenation"></div>
+
+		<script src="assets/js/basic.js" type="text/javascript"></script> 
+		<script src="assets/js/qrcode.min.js" type="text/javascript"></script> 
+		<script src="assets/js/printbadge.js" type="text/javascript"></script> 
+		<script>
+			jQuery(document).ready(function() {     
+			    p.init();
+			});
+		</script>
+	</body>
+</html>

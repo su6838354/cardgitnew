@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+    <html lang="en" class="ie8 no-js">
+    <![endif]-->
+<!--[if IE 9]>
+        <html lang="en" class="ie9 no-js">
+        <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+ <!--<![endif]-->
+ <!-- BEGIN HEAD -->
+ <head> 
+  <meta charset="utf-8" /> 
+  <title></title> 
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" /> 
+  <meta content="" name="description" /> 
+  <meta content="" name="author" /> 
+
+  <!-- BEGIN GLOBAL MANDATORY STYLES --> 
+  <link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/style-metro.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/style.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/style-responsive.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color" /> 
+  <link href="media/css/uniform.default.css" rel="stylesheet" type="text/css" /> 
+  <!-- END GLOBAL MANDATORY STYLES --> 
+  <!-- BEGIN PAGE LEVEL STYLES --> 
+  <link href="media/css/jquery.gritter.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/daterangepicker.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/fullcalendar.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/jqvmap.css" rel="stylesheet" type="text/css" media="screen" /> 
+  <link href="media/css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" /> 
+  <link href="media/css/profile.css" rel="stylesheet" type="text/css" />
+  <link href="media/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"  type="text/css" />
+
+  <!-- END PAGE LEVEL STYLES --> 
+  <link href="assets/css/basic.css?vId=160614" rel="stylesheet" type="text/css" />
+  <link href="assets/css/user.css?vId=160614" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="media/image/favicon.ico" /> 
+ </head> 
+ <!-- END HEAD --> 
+ <!-- BEGIN BODY --> 
+ <body class="page-header-fixed"> 
+  <!-- BEGIN HEADER --> 
+  <div class="header navbar navbar-inverse navbar-fixed-top"> 
+    <!-- BEGIN TOP NAVIGATION BAR --> 
+    <div class="navbar-inner j_navbar"></div> 
+    <!-- END TOP NAVIGATION BAR --> 
+  </div> 
+  <!-- END HEADER --> 
+
+  <!-- BEGIN CONTAINER --> 
+  <div class="page-container"> 
+   <!-- BEGIN SIDEBAR --> 
+   <div class="page-sidebar nav-collapse collapse"> 
+    <!-- BEGIN SIDEBAR MENU --> 
+    <ul class="page-sidebar-menu j_sidebar_menu"></ul> 
+    <!-- END SIDEBAR MENU --> 
+   </div> 
+   <!-- END SIDEBAR --> 
+   <!-- BEGIN PAGE --> 
+   <div class="page-content">
+       <!-- BEGIN PAGE CONTAINER-->        
+
+      <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="icon-user"></i>
+                        <a href="javascript:;">团员/青年列表管理</a>
+                        <i class="icon-angle-right"></i>
+                    </li>
+                    <li><a href="javascript:;">团员/青年列表</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+
+            <!--BEGIN TABS-->
+
+            <div class="tabbable tabbable-custom tabbable-full-width">
+
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_1_1" data-toggle="tab">团员/青年信息</a></li>
+                <!-- <li><a href="#tab_1_2" data-toggle="tab">管理图片</a></li> -->
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane profile-classic row-fluid active" id="tab_1_1">
+                  <ul class="unstyled span10 j_infoUser" style="width:580px;">
+                    <!-- <li>
+                      <input type="file" id="photoFileUpload" style="margin-left:25px;display:none;">
+                      <div class="span2" style="margin-left:25px;margin-bottom:18px;width:120px;height:120px;"><img src="" alt="" class="avatar" style="background:#eee;width:120px;height:120px;border: 1px solid #eee;" /> 
+                      <a href="javascript:;" class="profile-edit j_upload_img">上传导师头像</a></div>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <br/>
+                    </li> -->
+                    <!-- <li>
+                      <span>创建时间:</span>
+                      <span class="createdAt" ></span>
+                      <span style="margin-left: 10px;">改动时间:</span>
+                      <span class="createdAt" ></span>
+                    </li> -->
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;账号:</span>
+                      <input class="username" disabled="disabled" />
+                    </li>
+                    <li>
+                      <span>身份证号:</span>
+                      <input class="idcard" disabled="disabled"/>
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生日:</span>
+                      <input class="birth" disabled="disabled" />
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年龄:</span>
+                      <input class="age" disabled="disabled" />
+                    </li>
+                    <li>
+                      <span>指定编号:</span>
+                      <input class="flagNumber" />
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名:</span>
+                      <input class="realname" />
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性别:</span>
+                      <select class="sex">
+                        <option value="">请选择</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                      </select>
+                    </li>
+                    <li>
+                      <span>所在居委:</span>
+                      <select class="location j_UA" style="width: 90px;">
+                        <option value="">请选择</option>
+                      </select>
+                    </li>
+                    <li>
+                      <span>所在单位:</span>
+                      <select class="group j_UA" style="width:220px;">
+                        <option value="">请选择</option>
+                      </select>
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机:</span>
+                      <input class="mobile" />
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;住址:</span>
+                      <textarea class="address"></textarea>
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;职业:</span>
+                      <input class="job" />
+                    </li>
+                    <li>
+                      <span>政治面貌:</span>
+                      <input class="political" />
+                    </li>
+                    <li>
+                      <button class="btn btn-danger j_btn_modify">保存</button>
+                      <span class="j_result"></span>
+                    </li>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!--END TABS-->
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- END PAGE CONTAINER-->
+   </div> 
+   <!-- END PAGE --> 
+  </div> 
+  <!-- END CONTAINER --> 
+  <!-- BEGIN FOOTER --> 
+  <div class="footer j_footer"></div> 
+  <!-- END FOOTER --> 
+  <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page
+                load time) --> 
+  <!-- BEGIN CORE PLUGINS --> 
+ 
+  <script src="assets/js/basic.js?vId=20170213v1" type="text/javascript"></script> 
+  <script src="assets/js/user.js?vId=20170213v1" type="text/javascript"></script> 
+  <script src="media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+                 
+  <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js
+                to fix bootstrap tooltip conflict with jquery ui tooltip --> 
+  <script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"> </script>
+  <script src="media/js/bootstrap.min.js" type="text/javascript"> </script>
+                
+
+  <!-- END CORE PLUGINS --> 
+  
+  <!-- BEGIN PAGE LEVEL SCRIPTS --> 
+  <script src="media/js/app.js" type="text/javascript"></script> 
+                
+  <!-- END PAGE LEVEL SCRIPTS --> 
+  <script type="text/javascript">
+      jQuery(document).ready(function() {
+          App.init(); // initlayout and core plugins
+          p.init();
+      });
+  </script> 
+  <!-- END JAVASCRIPTS --> 
+  <!-- END BODY --> 
+ </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>信息详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="format-detection" content="telephone=no,address=no,email=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../static/assets/css/mobile/common.css?vId=170219v1" />
+		<link rel="stylesheet" href="../../static/assets/css/mobile/myprofile.css?vId=170219v1" />
+	</head>
+	<body>
+		<div class="out-wrap">
+			<div class="profile-box">
+				<div class="Users" style="display: none;">
+					<div id="qrcode"></div>
+					<div class="property"><label>卡号：</label></div>
+					<div class="property"><label>姓名：</label></div>
+					<div class="property"><label>性别：</label></div>
+					<div class="property"><label>年龄：</label></div>
+					<div class="property"><label>生日：</label></div>
+					<div class="property"><label>面貌：</label></div>
+					<div class="property"><label>职业：</label></div>
+					<div class="property"><label>单位：</label></div>
+					<div class="property"><label>居委：</label></div>
+					<div class="property"><label>住址：</label></div>
+					<div class="property"><label>状态：</label></div>
+				</div>
+				<div class="Admins" style="display: none;">
+					<div class="property"><label>卡号：</label></div>
+					<div class="property"><label>单位：</label></div>
+					<div class="property"><label>姓名：</label></div>
+					<div class="property"><label>手机：</label></div>
+					<div class="property"><label>电话：</label></div>
+					<div class="property"><label>地址：</label></div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../static/assets/js/mobile/share.js?vId=170219v1" ></script>
+		<script type="text/javascript" src="../../static/assets/js/mobile/qrcode.min.js?vId=170219v1" ></script>
+		<script type="text/javascript" src="../../static/assets/js/mobile/myprofile.js?vId=170219v1" ></script>
+		<script type="text/javascript">	
+			loading();
+			$(document).ready(function() {
+				setTimeout(function(){
+					p.init();
+				},300);
+			});
+		</script>
+		<script>
+		</script>
+	</body>
+</html>
+
+
+

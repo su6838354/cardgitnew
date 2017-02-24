@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<table>
+			 <thead>
+				<tr>
+					<!-- <th>结果</th> -->
+					<!-- <th>单位</th>
+					<th>是否发布活动</th>
+					<th>所属人员总数</th>
+					<th>实际参与总数</th>
+					<th>所属团员总数（包括保留团籍）</th>
+					<th>实际参与团员数</th>
+					<th>参与率（实际参与总数/所属总数）</th>
+					<th>平均星级（精确到小数点后两位）</th> -->
+				</tr>
+			</thead> 
+			<tbody>
+			</tbody>
+		</table>
+		<script src="assets/js/basic.js?vId=20160628" type="text/javascript"></script> 
+		<script src="assets/js/doExcelActivity.js?vId=20160628" type="text/javascript"></script> 
+		<script>
+			jQuery(document).ready(function() {     
+			    p.init();
+			});
+			p.user={};
+			p.user.get_user=function(param,succ_cb,fail_cb){
+		        misc.ajax.cdPost(misc.api.user.get_user, JSON.stringify(param), function(res){
+		            succ_cb && succ_cb(res);
+		        }, function(err){
+		            fail_cb && fail_cb();
+		        });
+		    };
+			p.admin={};
+			p.admin.get_admins=function(param,succ_cb,fail_cb){
+		        misc.ajax.cdPost(misc.api.admin.get_admins, JSON.stringify(param), function(res){
+		            succ_cb && succ_cb(res);
+		        }, function(err){
+		            fail_cb && fail_cb();
+		        });
+			};
+			p.activity={};
+			p.activity.get_activity=function(param,succ_cb,fail_cb){
+		        misc.ajax.cdPost(misc.api.activity.get_activity, JSON.stringify(param), function(res){
+		            succ_cb && succ_cb(res);
+		        }, function(err){
+		            fail_cb && fail_cb();
+		        });
+		    };
+		    p.activity.get_activities=function(param,succ_cb,fail_cb){
+		        misc.ajax.cdPost(misc.api.activity.get_activities, JSON.stringify(param), function(res){
+		            succ_cb && succ_cb(res);
+		        }, function(err){
+		            fail_cb && fail_cb();
+		        });
+		    };
+		    p.activity.get_act_registration=function(param,succ_cb,fail_cb){
+		        misc.ajax.cdPost(misc.api.activity.get_act_registration, JSON.stringify(param), function(res){
+		            succ_cb && succ_cb(res);
+		        }, function(err){
+		            fail_cb && fail_cb();
+		        });
+		    };
+		 //    p._user={};
+			// p._user.login=function(param,succ_cb,fail_cb){
+			// 	misc.ajax.cdPost(misc.api._user.login, JSON.stringify(param), function(res){
+		 //            succ_cb && succ_cb(res);
+		 //        }, function(err){
+		 //            fail_cb && fail_cb();
+		 //        });
+			// };
+			// p._user.login({
+			// 	// "userRole": "Users",
+			//  //  	"userName": "ly0522",
+			//  //  	"userPwd": "123456"
+			// 	"userRole": "Admins",
+			// 	"userName": "shcm_mz",
+			// 	"userPwd": "479985"
+			// },function(res){
+		 //    	debugger
+		 //    },function(err){
+		    	
+		 //    });
+		    // p.user.get_user({
+		    // 	"pid": "5704a81b39b0570053979274"
+		    // },function(res){
+		    // 	debugger
+		    // },function(err){
+		    	
+		    // });
+		    // p.admin.get_admins({},function(res){
+		    // 	debugger
+		    // },function(err){
+		    // 	debugger
+		    // });
+		    // p.activity.get_activity({
+  				// "objectId": "584a1bb48e450a006ab377e5"
+		    // },function(res){
+		    // 	debugger
+		    // },function(err){
+		    	
+		    // });
+		  //   p.activity.get_activities({
+		  //   	"isDelete":"0",
+				// "isShow":"1",
+			 // 	"limit":10,
+			 // 	page_index:1,
+			 // 	"admin":"57071cdda34131004cfea8fe"
+		  //   },function(res){
+		  //   	debugger
+		  //   },function(err){
+		    	
+		  //   });
+		  //   p.activity.get_act_registration({
+				// "activity": "57397f922e958a0069d68de2"
+		  //   },function(res){
+		  //   	debugger
+		  //   },function(err){
+		    	
+		  //   });
+		</script>
+	</body>
+</html>

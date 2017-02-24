@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css" media="screen">
+			body{
+				overflow: auto;
+			}
+			.badges{
+				width: 1675px;
+				height: 860px;
+			}
+			.badge{
+				float: left;
+				margin-left: 10px;
+				margin-top: 15px;
+				width: 815px;
+				height: 815px;
+				background-image: url(assets/images/badge/bg12-1.jpg);
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center; 
+			}
+			.qrcode{
+				padding: 10px;
+			    width: 157px;
+			    height: 157px;
+			    top: 412px;
+			    left: 426px;
+			    position: relative;
+			    background-color: #fff;
+			    float: left;
+			}
+			.name{
+				font-size: 51px;
+			    font-weight: 900;
+			    font-family: 'Microsof YaHei';
+			    top: 498px;
+			    position: absolute;
+			    margin-left: 201px;
+			    letter-spacing: 6px;
+			}
+			.flagNumber{
+				font-size: 18px;
+			    font-weight: 900;
+			    font-family: monospace;
+			    top: 592px;
+			    left: 260px;
+			    position: relative;
+			    float: left;
+			}
+			.select-area{
+				padding: 30px 0;
+				text-align: center;
+			}
+			.total{
+				text-align: center;
+				margin-top: 20px;
+			}
+			.daterange{
+				text-align: center;
+			}
+			.confirm{
+				background-color: green;
+				color: #fff;
+				border: 0;
+				margin-left: 15px;
+				padding: 5px 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="badges">
+			<!-- <div class="badge" style="background-image: url(assets/images/badge/bg12-1.jpg);">
+				<div class="qrcode"></div>
+				<div class="name">张三丰</div>
+				<div class="flagNumber">16000001</div>
+			</div>
+			<div class="badge"></div> -->
+		</div>
+		
+		<br/>
+		<br/>
+		<!-- <div class="daterange">
+			开始日期：<input type="date" class="begin" placeholder="2016/04/21" />&nbsp;&nbsp;&nbsp;
+			结束日期：<input type="date" class="end" placeholder="2016/04/21" />
+			<button class="confirm">确定</button>
+		</div> -->
+        <div class="pagenation clearboth j_pagenation"></div>
+        <div class="total">共<span id="maxPage">0</span>页，<span id="maxCount">0</span>个徽章</div>
+		
+		<script src="assets/js/basic.js?vId=20160523" type="text/javascript"></script> 
+		<script src="assets/js/qrcode.min.js?vId=20160523" type="text/javascript"></script> 
+		<script src="assets/js/printbadge3.js?vId=20160523" type="text/javascript"></script> 
+		<script>
+			jQuery(document).ready(function() {     
+			    p.init();
+			});
+		</script>
+	</body>
+</html>

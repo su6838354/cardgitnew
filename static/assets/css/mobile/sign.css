@@ -1,0 +1,150 @@
+body {
+	overflow: hidden;
+	background-color: #f5f5f5;
+}
+.out-wrap .logo{
+	width: 90%;
+    margin: 2rem auto;
+    background-color: transparent;
+    border-radius: .8rem;
+    -webkit-border-radius: .8rem;
+    -moz-border-radius: .8rem;
+}
+div.wait-tip {
+	display: none;
+	width: 12.4rem;
+	height: 2.3rem;
+	line-height: 2.3rem;
+	text-align: center;
+	font-size: .9rem;
+	color: #fafafa;
+	background: rgba(0, 0, 0, .45);
+	z-index: 50;
+	border-radius: .35rem;
+	-moz-border-radius: .35rem;
+	-webkit-border-radius: .35rem;
+	margin: .7rem auto 0;
+	/*margin: 0 auto;*/
+}
+.user-form {
+	width: 90%;
+	/*height: 10rem;*/
+	border: 1px solid #d9d9d9;
+    margin: 0 auto;
+    padding: 1rem 0;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+}
+.username-box {
+	margin: 0 auto;
+	width: 12.4rem;
+	height: 1.5rem;
+	padding: .4rem 0;
+	border: 1px solid #cccccc;
+	background: #fff;
+}
+.username-box label {
+	color: #333;
+	font-size: .85rem;
+	line-height: 1.5rem;
+	font-weight: 400;
+    width: 3rem;
+    display: inline-block;
+}
+.username-box label.bRight {
+	margin-right: .25rem;
+	padding-right: .5rem;
+	border-right: 1px solid #ccc;
+}
+.username-box label span{
+	position: relative;
+	top: -1px;
+	margin-right: 2px;
+}
+.user-form input {
+	color: #333 !important;
+	border: none;
+	outline: none !important;
+	height: 1.5rem !important;
+	line-height: 1.5rem;
+	font-size: 0.95rem;
+	font-weight: 400;
+	width: 11rem;
+    padding-left: .5rem;
+}
+.user-form .count{
+	font-size: .7rem;
+	line-height: 1.5rem;
+    color: #aaa;
+    font-weight: 100;
+    float: right;
+    margin-right: .3rem;
+	color: #3ea6ff;
+}
+.user-form .login-btn {
+	background-color: #e03a3c;
+	width: 12.4rem;
+	height: 2rem;
+	line-height: 2rem;
+	outline: none;
+	/*border-radius: .25rem;
+	-moz-border-radius: .25rem;
+	-webkit-border-radius: .25rem;*/
+	color: #ffffff;
+	font-size: .85rem;
+	font-weight: 400;
+	text-align: center;
+	margin: 1rem auto 0;
+}
+::-webkit-input-placeholder {
+	color: #a4a4a4 !important;
+	font: 400 .8rem/1.5rem "Helvetica Neue",Helvetica,Tahoma,Arial,"Microsoft YaHei",Sans-serif !important;
+}
+:-moz-placeholder {
+	color: #a4a4a4 !important;
+	font: 400 .8rem/1.5rem "Helvetica Neue",Helvetica,Tahoma,Arial,"Microsoft YaHei",Sans-serif !important;
+}
+::-moz-placeholder {
+	color: #a4a4a4 !important;
+	font: 400 .8rem/1.5rem "Helvetica Neue",Helvetica,Tahoma,Arial,"Microsoft YaHei",Sans-serif !important;
+}
+:-ms-input-placeholder {
+	color: #a4a4a4 !important;
+	font: 400 .8rem/1.5rem "Helvetica Neue",Helvetica,Tahoma,Arial,"Microsoft YaHei",Sans-serif !important;
+}
+.title {
+	margin-top: 2.5rem;
+	font-weight: 100;
+	font-size: .95rem;
+	color: #141414;
+	width: 100%;
+	text-align: center
+}
+.statement {
+	font-size: .75rem;
+	color: #141414;
+	width: 14.6rem;
+	margin: 1.3rem auto 1.5rem
+}
+.login-tips{
+	width: 12.4rem;
+    margin: 0 auto;
+    text-align: right;
+    font-size: .75rem;
+    line-height: .75rem;
+    color:#a4a4a4; 
+}
+.contact{
+	max-width: 768px;
+	position: absolute;
+    bottom: 0.5rem;
+    text-align: center;
+    width: 100%;
+    color: grey;
+	font: 400 .7rem/.7rem "Helvetica Neue",Helvetica,Tahoma,Arial,"Microsoft YaHei",Sans-serif !important;
+
+}
+#yzm{
+	width: 5.4rem;
+}

@@ -1,0 +1,36 @@
+.activitiy-select{
+    width: 80%;
+    margin: 1rem 10% 0;
+    border: .06rem solid #d8d8d8;
+    /*border:.24rem solid #47a9f2;*/
+    color: #a4a4a4 !important;
+    padding: .6rem 0 .6rem 2%;
+    background-color: transparent;
+    font: 400 .9rem/1.12rem "Helvetica Neue",Helvetica,Tahoma,Arial,"Microsoft YaHei",Sans-serif !important;
+}
+.save-btn {
+    background-color: #e03a3c;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    color: #fff;
+    text-align: center;
+    width: 80%;
+    margin: 1rem auto;
+    border-radius: .35rem;
+    -moz-border-radius: .35rem;
+    -webkit-border-radius: .35rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.check-in-btn{
+    background: #f08300;
+    color: #FFf;
+    font-size: .7rem;
+    padding: .15rem .35rem;
+    margin-left: .6rem;
+    position: relative;
+    top: -0.1rem;
+    border-radius: .15rem;
+    -moz-border-radius: .15rem;
+    -webkit-border-radius: .15rem;
+}

@@ -1,0 +1,57 @@
+.profile-box{
+    width: 86%;
+    height: auto;
+    padding: 1.3rem 0;
+    margin: 1.3rem auto 0;
+    border: .24rem solid #f08300;
+    border-radius: .8rem;
+    -webkit-border-radius: .8rem;
+    -moz-border-radius: .8rem;
+}
+.row{
+    height: 3rem;
+}
+.row img{
+    width: 3rem;
+    height: auto;
+    float: left;
+    margin-left: 2rem;
+}
+.row div{
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    color: #222;
+    font-size: 1rem;
+}
+.star-count-log{
+    background: rgba(71, 169, 242, 0.8);
+    width: 86%;
+    height: auto;
+    margin: 0 auto;
+    color: #Fff;
+    border-radius: .35rem;
+    padding: .5rem 0;
+    display: none;
+    margin-top: 1.3rem;
+}
+.star-count-log li{
+    height: 2.6rem;
+    display: table-row;
+}
+.star-count-log li div{
+    display: inline-block;
+    text-align: center;
+    float: left;
+    width: 15%;
+    font-weight: 100;
+    font-size: .8rem;
+    line-height:1.6rem;
+}
+.star-count-log li .name{
+    width: 64%;
+    text-align: left;
+    padding-left: 5%;
+}
+.star-count-log li .marks{
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+    <html lang="en" class="ie8 no-js">
+    <![endif]-->
+<!--[if IE 9]>
+        <html lang="en" class="ie9 no-js">
+        <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+ <!--<![endif]-->
+ <!-- BEGIN HEAD -->
+ <head> 
+  <meta charset="utf-8" /> 
+  <title></title> 
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" /> 
+  <meta content="" name="description" /> 
+  <meta content="" name="author" /> 
+
+  <!-- BEGIN GLOBAL MANDATORY STYLES --> 
+  <link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/style-metro.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/style.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/style-responsive.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color" /> 
+  <link href="media/css/uniform.default.css" rel="stylesheet" type="text/css" /> 
+  <!-- END GLOBAL MANDATORY STYLES --> 
+  <!-- BEGIN PAGE LEVEL STYLES --> 
+  <link href="media/css/jquery.gritter.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/daterangepicker.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/fullcalendar.css" rel="stylesheet" type="text/css" /> 
+  <link href="media/css/jqvmap.css" rel="stylesheet" type="text/css" media="screen" /> 
+  <link href="media/css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" /> 
+  <link href="media/css/profile.css" rel="stylesheet" type="text/css" />
+  <link href="media/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"  type="text/css" />
+
+  <!-- END PAGE LEVEL STYLES --> 
+  <link href="assets/css/basic.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/user.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="media/image/favicon.ico" /> 
+ </head> 
+ <!-- END HEAD --> 
+ <!-- BEGIN BODY --> 
+ <body class="page-header-fixed"> 
+  <!-- BEGIN HEADER --> 
+  <div class="header navbar navbar-inverse navbar-fixed-top"> 
+    <!-- BEGIN TOP NAVIGATION BAR --> 
+    <div class="navbar-inner j_navbar"></div> 
+    <!-- END TOP NAVIGATION BAR --> 
+  </div> 
+  <!-- END HEADER --> 
+
+  <!-- BEGIN CONTAINER --> 
+  <div class="page-container"> 
+   <!-- BEGIN SIDEBAR --> 
+   <div class="page-sidebar nav-collapse collapse"> 
+    <!-- BEGIN SIDEBAR MENU --> 
+    <ul class="page-sidebar-menu j_sidebar_menu"></ul> 
+    <!-- END SIDEBAR MENU --> 
+   </div> 
+   <!-- END SIDEBAR --> 
+   <!-- BEGIN PAGE --> 
+   <div class="page-content">
+       <!-- BEGIN PAGE CONTAINER-->        
+
+      <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="icon-th"></i>
+                        <a href="javascript:;">单位/居委管理面板  </a>
+                        <i class="icon-angle-right"></i>
+                    </li>
+                    <li><a href="javascript:;">查看账号信息</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+
+            <!--BEGIN TABS-->
+
+            <div class="tabbable tabbable-custom tabbable-full-width">
+
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_1_1" data-toggle="tab">账号信息</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane profile-classic row-fluid active" id="tab_1_1">
+                  <ul class="unstyled span10 j_infoUser" style="width:580px;">
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;账号:</span>
+                      <input class="username" disabled="disabled" />
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类型:</span>
+                      <select class="type" disabled="disabled" >
+                        <option value="">请选择</option>
+                        <option value="location">居委</option>
+                        <option value="group">单位</option>
+                      </select>
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名称:</span>
+                      <input class="name"  disabled="disabled"/>
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址:</span>
+                      <textarea class="address"></textarea>
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;固话:</span>
+                      <input class="tel" />
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机:</span>
+                      <input class="mobile" />
+                    </li>
+                    <li>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;负责人:</span>
+                      <input class="person" />
+                    </li>
+                    <li>
+                      <button class="btn btn-danger j_btn_modify">保存</button>
+                      <span class="j_result"></span>
+                    </li>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!--END TABS-->
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- END PAGE CONTAINER-->
+   </div> 
+   <!-- END PAGE --> 
+  </div> 
+  <!-- END CONTAINER --> 
+  <!-- BEGIN FOOTER --> 
+  <div class="footer j_footer"></div> 
+  <!-- END FOOTER --> 
+  <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page
+                load time) --> 
+  <!-- BEGIN CORE PLUGINS --> 
+ 
+  <script src="assets/js/basic.js?vId=170219v1" type="text/javascript"></script> 
+  <script src="assets/js/admin.js?vId=170219v1" type="text/javascript"></script> 
+  <script src="media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+                 
+  <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js
+                to fix bootstrap tooltip conflict with jquery ui tooltip --> 
+  <script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"> </script>
+  <script src="media/js/bootstrap.min.js" type="text/javascript"> </script>
+                
+
+  <!-- END CORE PLUGINS --> 
+  
+  <!-- BEGIN PAGE LEVEL SCRIPTS --> 
+  <script src="media/js/app.js" type="text/javascript"></script> 
+                
+  <!-- END PAGE LEVEL SCRIPTS --> 
+  <script type="text/javascript">
+      jQuery(document).ready(function() {
+          App.init(); // initlayout and core plugins
+          p.init();
+      });
+  </script> 
+  <!-- END JAVASCRIPTS --> 
+  <!-- END BODY --> 
+ </body>
+</html>
