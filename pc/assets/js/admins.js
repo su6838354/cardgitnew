@@ -1,7 +1,7 @@
 var p = {
-  'className': 'Admins',
-  'page': 1,
-  'size': 5
+  'className':'Admins',
+  'page':1,
+  'size':5
 };
 p.init = function(){
   p.page = misc.getParam('page') || 1;
@@ -31,39 +31,55 @@ p.initEvent = function(){
   });
 };
 p.loadDatas = function(){
-  var query = new AV.Query(p.className);
-  var searchType = $('.search-type').val(),
-      searchWord = $.trim($('#search-word').val());
-  // searchWord && query.equalTo(searchType,searchWord.toLowerCase());
-  if(searchType=="type"){
-    switch(searchWord){
-      case '单位': searchWord='group';break;
-      case '居委': searchWord='location';break;
-      default: searchWord='';break;
-    }
-  }
-  searchWord && query.startsWith(searchType,searchWord.toLowerCase());
-  query.count({
-    success: function(data){
-      p.maxPage = Math.ceil(data/p.size);
-      $('#maxCount').text(data);
-    }
-  });
+    param={
+      "isDelete":"0",
+      "isShow":"-1",
+      "limit":p.size,
+      "page_index":p.page
+    };
+    misc.func.admin.get_admins(param,function(res){
+        debugger
+        if(res.code=="0"){
 
-// query.startsWith('pubUser', 'LeanCloud');
-  query.descending("createdAt");
-  query.limit(p['size']);
-  query.skip((p['page']-1)*p['size']);
-  query.find({
-    success: function(datas) {
-      $('#datatable tbody').html(p.htmlDatas(datas));
-      operateEvent();
-      p.maxPage>=1 && $('.j_pagenation').show() && p.loadPagination();
-    },
-    error: function(datas, error) {
+        }else{
+            alert('没有数据哦')
+        }
+    },function(err){
+        alert('没有数据哦')
+    });
+//   var query = new AV.Query(p.className);
+//   var searchType = $('.search-type').val(),
+//       searchWord = $.trim($('#search-word').val());
+//   // searchWord && query.equalTo(searchType,searchWord.toLowerCase());
+//   if(searchType=="type"){
+//     switch(searchWord){
+//       case '单位': searchWord='group';break;
+//       case '居委': searchWord='location';break;
+//       default: searchWord='';break;
+//     }
+//   }
+//   searchWord && query.startsWith(searchType,searchWord.toLowerCase());
+//   query.count({
+//     success: function(data){
+//       p.maxPage = Math.ceil(data/p.size);
+//       $('#maxCount').text(data);
+//     }
+//   });
 
-    }
-  });  
+// // query.startsWith('pubUser', 'LeanCloud');
+//   query.descending("createdAt");
+//   query.limit(p['size']);
+//   query.skip((p['page']-1)*p['size']);
+//   query.find({
+//     success: function(datas) {
+//       $('#datatable tbody').html(p.htmlDatas(datas));
+//       operateEvent();
+//       p.maxPage>=1 && $('.j_pagenation').show() && p.loadPagination();
+//     },
+//     error: function(datas, error) {
+
+//     }
+//   });  
 };
 p.htmlDatas = function(datas){
   var arr = [];
@@ -105,18 +121,18 @@ function operateEvent(){
         if(!id){
           return false;
         }
-        var query = new AV.Query(p.className);
-        query.get(id, {
-            success: function(data) {
-              var property = 'isShow';
-              var s = (data.get(property) == '1') ? '0' : '1';
-              data.set(property,s);
-              data.save();
-            },
-            error: function(user, error) {   
-                alert("操作失败 " + error.message);
-            }
-        });
+        // var query = new AV.Query(p.className);
+        // query.get(id, {
+        //     success: function(data) {
+        //       var property = 'isShow';
+        //       var s = (data.get(property) == '1') ? '0' : '1';
+        //       data.set(property,s);
+        //       data.save();
+        //     },
+        //     error: function(user, error) {   
+        //         alert("操作失败 " + error.message);
+        //     }
+        // });
     });
 
     $('#datatable .j_view').off().on('click', function (e) {
@@ -211,31 +227,31 @@ function createLateEvent(){
           'mobile': params.mobile,
           'tel': params.tel
         };
-        var user = new AV.User();
-        for (var property in params1){
-          user.set(property, params1[property]);
-        }
-        user.signUp(null, {
-          success: function(data) {
-            var Admins = AV.Object.extend(p.className);
-            var u = new Admins();
-            for (var property in params2){
-              u.set(property, params2[property]);
-            }
-            u.set('pid',data.id);
-            u.save(null, {
-              success: function(data) {
-                userObj.logOut();
-              },
-              error: function(data, error) {
-                alert("添加失败 " + error.message);
-              }
-            });
-          },
-          error: function(user, error) {
-            alert("添加失败 " + error.message);
-          }
-        });
+        // var user = new AV.User();
+        // for (var property in params1){
+        //   user.set(property, params1[property]);
+        // }
+        // user.signUp(null, {
+        //   success: function(data) {
+        //     var Admins = AV.Object.extend(p.className);
+        //     var u = new Admins();
+        //     for (var property in params2){
+        //       u.set(property, params2[property]);
+        //     }
+        //     u.set('pid',data.id);
+        //     u.save(null, {
+        //       success: function(data) {
+        //         userObj.logOut();
+        //       },
+        //       error: function(data, error) {
+        //         alert("添加失败 " + error.message);
+        //       }
+        //     });
+        //   },
+        //   error: function(user, error) {
+        //     alert("添加失败 " + error.message);
+        //   }
+        // });
     });
 }
 

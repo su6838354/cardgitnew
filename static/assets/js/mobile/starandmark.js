@@ -4,7 +4,7 @@ p.init=function() {
 	user.currentUser.get=function(prop){
 		return user.currentUser[prop];
 	};
-	if(!user.currentUser.get('userRole')=='Users'){
+	if(user.currentUser.get('userRole')=='Users'){
 		p.id=user.currentUser.pid;
 		user.checkLogin(p.initData);
 	}else{
@@ -42,7 +42,7 @@ p.loadMyActJoinLog = function(){
 					act_count += obj.get('star')||0;
 					arr.push([
 						'<li>',
-							'<div class="name">',mark+i+1,'. ',obj.get("activity__name")||"活动名",'</div>',
+							'<div class="name">',mark+i+1,'. ',obj.get("activity__title"),'</div>',
 							'<div class="marks">',(1+obj.get("extra")),'分</div>',
 							'<div class="stars">',obj.get('star'),'星</div>',
 						'</li>'

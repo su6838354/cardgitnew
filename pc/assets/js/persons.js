@@ -1,7 +1,7 @@
 var p = {
     'className': 'Users',
     'page': 1,
-    'size': 3
+    'size': 10
 };
 p.init = function(){
     $j_pagenation=$('.j_pagenation');
@@ -75,7 +75,7 @@ p.initEvent = function(){
       e.preventDefault();
       var searchWord = $.trim($('#search-word').val());
       if(searchWord){
-        p.loadUsersByArrayKey(p.admin.get("type"),userObj.currentUser.id,p.showUsers);
+        p.loadUsersByArrayKey();
       }
   });
   $('.j_show_persons').on('click', function (e) {
@@ -83,7 +83,7 @@ p.initEvent = function(){
       p.checkin="";
       // $('#search-word').val('');
       p.page=1;
-      p.loadUsersByArrayKey(p.admin.get("type"),userObj.currentUser.id,p.showUsers);
+      p.loadUsersByArrayKey();
   });
   $('.j_check_in').on('click', function (e) {
       e.preventDefault();
@@ -91,12 +91,6 @@ p.initEvent = function(){
       // $('#search-word').val('');
       p.page=1;
       p.loadUsersByArrayKey(p.admin.get("type"),userObj.currentUser.id,p.showUsers);
-      // p.loadUserById([]);
-      // if(!p.checkInUsers){
-      //   p.loadCheckInUsersByAdminId(userObj.currentUser.id,p.showCheckIn);
-      // }else{
-      //   p.showCheckIn();
-      // }
   });
   $('.j_uncheck_in').on('click', function (e) {
       e.preventDefault();
@@ -104,11 +98,6 @@ p.initEvent = function(){
       // $('#search-word').val('');
       p.page=1;
       p.loadUsersByArrayKey(p.admin.get("type"),userObj.currentUser.id,p.showUsers);
-      // if(!p.checkInUsers){
-      //   p.loadCheckInUsersByAdminId(userObj.currentUser.id,undefined,p.showUnCheckIn);
-      // }else{
-      //   p.showUnCheckIn();
-      // }
   });
   $('.j_btn').on('click', function (e) {
       e.preventDefault();
@@ -119,104 +108,53 @@ p.initEvent = function(){
       $this.blur();
   });
 };
-p.loadUsersByArrayKey= function(type,adminId,cb){
-  var query = new AV.Query('Users');
-  // query.equalTo("isShow","1");
+p.loadUsersByArrayKey=function(type,adminId,cb){
+  var type=p.admin.get("type"),
+      adminId=userObj.currentUser.pid,
+      cb=p.showUsers;
   var searchType = $('.search-type').val(),
       searchWord = $.trim($('#search-word').val());
-  searchWord && query.startsWith(searchType,searchWord.toLowerCase());
-  if(p.checkin=="checkin"){
-    query.equalTo("checkin","true");
-  }else if(p.checkin=="uncheckin"){
-    query.notEqualTo("checkin","true");
+  // if(p.checkin=="checkin"){
+  //   query.equalTo("checkin","true");
+  // }else if(p.checkin=="uncheckin"){
+  //   query.notEqualTo("checkin","true");
+  // }
+  // type && query.equalTo(type, adminId);
+  var param={
+      "isShow": "-1",
+      "limit": p['size'],
+      "page_index": p['page'],
+      "group": "",
+      "location":"",
+      "flagNumber": "",
+      "mobile": "",
+      "idcard": "",
+      "realname": "",
+      "username": "",
+      "order_by": "-flagNumber"
+  };
+  if(type=="group"||type=="location"){
+      param[type]=adminId;
   }
-  type && query.equalTo(type, adminId);
-  query.count({
-    success: function(data){
-      p.maxPage = Math.ceil(data/p.size);
-      $('#maxCount').text(data);
-    }
-  });
-  query.descending("flagNumber");
-  // query.ascending("pid");
-  // query.descending("createdAt");
-  query.limit(p['size']);
-  query.skip((p['page']-1)*p['size']);
-  query.find().then(function(datas){
-    if(datas && datas.length>0){
-      cb && cb(datas);
+  param[searchType]=searchWord.toLowerCase();
+  misc.func.user.get_users(param,function(res){
+    if(res.code=="0"&&res.data){
+        p.pagination=res.pagination;
+        p.maxPage=p.pagination.page_count;
+        $('#maxCount').text(p.pagination.count);
+        datas=res.data;
+        if(datas && datas.length>0){
+            cb && cb(datas);
+        }
+        else{
+            p.clearTablePages();
+        }
     }
     else{
-      p.clearTablePages();
+        alert('没有数据哦')
     }
-  }, function(error){
-    alert('query error')
-  });
-}
-p.getCheckInUserIds = function(){
-  p.unCheckInUserIds = userIds.map(function(data, index) {
-    if(checkInUserIds.indexOf(data)==-1)
-      return data;
-  });
-};
-p.showUnCheckIn = function(){
-  if(!p.unCheckInUserIds){
-    p.getCheckInUserIds();
-  }
-  p.loadUserById(p.unCheckInUserIds);
-};
-p.showCheckIn = function(){
-  var datas = p.checkInUsers,
-      l = datas.length;
-  var arrHtml = [];
-  if(l==0){
-    arrHtml = [
-          '<h3>暂无已报到人员</h3>'
-    ];
-  }
-  else{
-    arrHtml = [
-          '<h3>已报到人员名单</h3>'
-    ];
-    arrHtml.push('<ul class="users-list">');
-    for (var i = 0; i < l; i++) {
-      arrHtml.push([
-          '<li>',
-            '<div style="width:15%;text-align:center;">',i+1,'.</div>',
-            '<a target="_blank" href="./user.html?id=',datas[i].get("userId"),'#user"><div style="width:25%;">',datas[i].get("userRealName"),'</div></a>',
-            '<div style="width:60%;">',misc.formatDateTime(datas[i].createdAt,userObj.format),'</div>',
-          '</li>',            
-            // $('.createdAt').text(misc.formatDateTime(obj['createdAt'],userObj.format));
-      ].join(''));
-    }
-    arrHtml.push('</ul');
-  }
-  Tools.UseModal([],'关闭',arrHtml.join(''),{
-      'width': 700,
-      'height': 480,
-      'margin-left':-350,
-      'margin-top':-200,
-      'position': 'fixed',
-      'left': '50%',
-      'top': '50%',
-  });
-  $('.modal-footer').remove();
-  $('.modal-body').css('margin-bottom', '50px');
-};
-p.loadCheckInUsersByAdminId = function(adminId,checkInFunc,unCheckInFunc){
-  var query = new AV.Query('CheckInLog');
-  query.limit(1000);
-  query.equalTo('adminId',adminId);
-  query.descending('createdAt');
-  query.find().then(function(datas) {
-    p.checkInUsers = datas;
-    checkInUserIds = datas.map(function(data, index) {
-      return data.get('userId');
-    });
-    checkInFunc && checkInFunc();
-    unCheckInFunc && unCheckInFunc();
-  }, function(error) {
-
+  },function(err){
+      alert('没有数据哦')
   });
 };
 p.htmlDatas = function(datas){
@@ -227,10 +165,13 @@ p.htmlDatas = function(datas){
   return arr.join('');
 };
 function htmlRow(data){
+    data.get=function(d){
+        return data[d];
+    };
     var cki = data.get("checkin"),
     cki_str = cki.length>1?[cki[1],"-",cki[2],"-",cki[3]," ",cki[4]].join(""):"未报到";
     var s = data.get("isShow") == "0" ? '<div class="outter-block outter-border"><div class="circle-block boxshowdow"><div></div>':'<div class="outter-block colorGreen"><div class="circle-block boxshowdow pull-right"><div></div>';
-    return ['<tr data-id="',data.id,'" data-pid="',data.get("pid"),'">',
+    return ['<tr data-id="',data.objectId,'" data-pid="',data.get("pid"),'">',
               '<td>',s,'</td>',
               '<td>',data.get("flagNumber"),'</td>',
               '<td class="j_starmark">',data.get("username"),'</td>',
@@ -240,8 +181,8 @@ function htmlRow(data){
               '<td style="max-width:100px;">',data.get("mobile"),'</td>',
               '<td>',data.get("political")=="团员"?(misc.getAge(data.get('birth'))<=28 ?"团员":'青年'):data.get("political").replace('S',''),'</td>',
               '<td>',misc.getAge(data.get('birth')),'岁</td>',
-              '<td>',(data.get("group")[2]||"暂无"),'</td>',
-              '<td>',(data.get("location")[2]||"暂无"),'</td>',
+              '<td>',(data.get("group")||"暂无"),'</td>',
+              '<td>',(data.get("location")||"暂无"),'</td>',
               // '<td style="max-width:120px;">',data.get("job"),'</td>',
               // '<td>',(data.get(p.admin.get("type")=="group"?"location":"group")[2]||"暂无"),'</td>',
               '<td>',cki_str,'</td>',
@@ -377,7 +318,6 @@ function createLateEvent(){
               success: function(data) {
                 // userObj.logOut();
                 AV.User.logOut();
-                // debugger
                 AV.User.logIn(p.admin.get('username'), p.admin.get('pwd')||"admin", {
                     success: function(user) {
                       if(user && user.getObjectId()){
@@ -425,7 +365,7 @@ showPages.prototype.toPage = function(page){ //页面跳转
   turnTo = page;
  }
  p.page = turnTo;
- p.loadUsersByArrayKey(p.admin.get("type"),userObj.currentUser.id,p.showUsers);
+ p.loadUsersByArrayKey(p.admin.get("type"),userObj.currentUser.pid,p.showUsers);
  // if(p.btn == '1'){
  //  p.loadUsersByArrayKey(p.admin.get("type"),userObj.currentUser.id,p.showUsers);
  // }

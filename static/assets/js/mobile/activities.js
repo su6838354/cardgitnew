@@ -1,6 +1,4 @@
-var p = {
-	'classname':'Activities'
-};
+var p = {};
 p.init = function() {
 	window._filter={
 		admin:'',

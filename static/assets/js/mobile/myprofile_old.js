@@ -46,7 +46,7 @@ p.showMyQRCode = function(){
         width: 13*fontSize,//设置宽高
         height: 13*fontSize
     });
- 	var url = [location.protocol,'//',location.host,'/mobile/scanqrcode/?id=',user.currentUser?user.currentUser.pid:-1];
+ 	var url = [location.protocol,'//',location.host,'/card/mobile/scanqrcode/?id=',user.currentUser?user.currentUser.pid:-1];
     qrcode.makeCode(url.join(''));
     setTimeout(function(){
     	qrcodeEle.style.visibility = 'visible';

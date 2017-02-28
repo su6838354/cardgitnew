@@ -519,6 +519,8 @@ misc.api={
 misc.api.base=[misc.api.host,misc.api.app1].join(misc.vars.empty);
 misc.api._user.login=misc.api.base+'login';
 misc.api.user.get_user=misc.api.base+'get_user';
+misc.api.user.get_users=misc.api.base+'get_users';
+misc.api.user.get_user_checkin=misc.api.base+'get_user_checkin';
 misc.api.admin.update_admin=misc.api.base+'update_admin';
 misc.api.admin.get_admin=misc.api.base+'get_admin';
 misc.api.admin.get_admins=misc.api.base+'get_admins';
@@ -528,9 +530,11 @@ misc.api.activity.get_act_registration=misc.api.base+'get_act_registration';
 misc.api.activity.get_act_registration_count=misc.api.base+'get_act_registration_count';
 misc.api.activity.create_act_registration=misc.api.base+'create_act_registration';
 misc.api.activity.get_act_join_log=misc.api.base+'get_act_join_log';
+misc.api.activity.update_act_join_log_by_id=misc.api.base+'update_act_join_log_by_id';
 misc.api.activity.create_act_join_log=misc.api.base+'create_act_join_log';
 misc.api.activity.create_activity=misc.api.base+'create_activity';
 misc.api.activity.update_activity=misc.api.base+'update_activity';
+
 
 misc.func={
 	_user:{},
@@ -547,6 +551,20 @@ misc.func._user.login=function(param,succ_cb,fail_cb){
 };
 misc.func.user.get_user=function(param,succ_cb,fail_cb){
 	misc.ajax.cdPost(misc.api.user.get_user, JSON.stringify(param), function(res){
+        succ_cb && succ_cb(res);
+    }, function(err){
+        fail_cb && fail_cb(err);
+    });
+};
+misc.func.user.get_users=function(param,succ_cb,fail_cb){
+	misc.ajax.cdPost(misc.api.user.get_users, JSON.stringify(param), function(res){
+        succ_cb && succ_cb(res);
+    }, function(err){
+        fail_cb && fail_cb(err);
+    });
+};
+misc.func.user.get_user_checkin=function(param,succ_cb,fail_cb){
+	misc.ajax.cdPost(misc.api.user.get_user_checkin, JSON.stringify(param), function(res){
         succ_cb && succ_cb(res);
     }, function(err){
         fail_cb && fail_cb(err);
@@ -629,6 +647,13 @@ misc.func.activity.get_act_join_log=function(param,succ_cb,fail_cb){
         fail_cb && fail_cb(err);
     });
 };
+misc.func.activity.update_act_join_log_by_id=function(param,succ_cb,fail_cb){
+    misc.ajax.cdPost(misc.api.activity.update_act_join_log_by_id, JSON.stringify(param), function(res){
+        succ_cb && succ_cb(res);
+    }, function(err){
+        fail_cb && fail_cb(err);
+    });
+};
 misc.func.activity.create_act_join_log=function(param,succ_cb,fail_cb){
     misc.ajax.cdPost(misc.api.activity.create_act_join_log, JSON.stringify(param), function(res){
         succ_cb && succ_cb(res);
@@ -638,22 +663,27 @@ misc.func.activity.create_act_join_log=function(param,succ_cb,fail_cb){
 };
 misc.ajax = {
     cdPost: function (url, data, success, fail) {
-        return arguments.length === 4 ? $.ajax({
-            url: url,
+        return jQuery.ajax({
+            url: url+'?_='+Date.now(),
             type: 'POST',
             dataType: 'json',
             data: data,
-            cache:false,
             success: success,
             fail: fail
-        }) : $.ajax({
-            url: url,
-            type: 'POST',
-            dataType: 'json',
-            cache:false,
-            data: JSON.stringify(data)
         });
     }
+    // $.ajax({
+    // 	// url: 'http://139.196.243.147:3390/app1/get_activities?_=1488173459498',
+    // 	url: 'http://139.196.243.147:3390/app1/get_activities?_='+Date.now(),
+    // 	type: 'POST',
+    // 	dataType: 'json',
+    // 	data: JSON.stringify({"isDelete":"0","isShow":"1","limit":10,"page_index":1}),
+    // 	success:function(res) {
+	   //  	debugger
+	   //  	console.log("success");
+	   //  }
+    // })
+    
 };
 var IMGEnum = {
 	'jpg':'jpg',
@@ -874,7 +904,9 @@ userObj.logIn = function(userName,userPwd){
 	  	}
 	});
 };
-userObj.init("checkLogin","initCommon");
+if(location.href.indexOf('login.html')==-1){
+	userObj.init("checkLogin","initCommon");
+}
 function strToDate(s){
   s = s ? s : misc.formatDateTime(new Date(),"yyyy/MM/dd")
   return new Date(s);

@@ -45,36 +45,36 @@ p.initEvent = function(){
   });
 };
 p.loadDatas = function(){
-  var query = new AV.Query(p.className);
-  var searchType = $('.search-type').val(),
-      searchWord = $.trim($('#search-word').val());
-  searchWord && query.startsWith(searchType,searchWord.toLowerCase());
-  if(p.checkin=="true"){
-      query.equalTo("checkin","true") 
-  }
-  else if(p.checkin=="false"){
-      query.notEqualTo("checkin","true") 
-  }
-  // query.equalTo("isShow","1");
-  query.count({
-    success: function(data){
-      p.maxPage = Math.ceil(data/p.size);
-      $('#maxCount').text(data);
-    }
-  });
-  query.descending("createdAt");
-  query.limit(p['size']);
-  query.skip((p['page']-1)*p['size']);
-  query.find({
-    success: function(datas) {
-      $('#datatable tbody').html(p.htmlDatas(datas));
-      operateEvent();
-      p.maxPage>=1 && p.loadPagination();
-    },
-    error: function(datas, error) {
+  // var query = new AV.Query(p.className);
+  // var searchType = $('.search-type').val(),
+  //     searchWord = $.trim($('#search-word').val());
+  // searchWord && query.startsWith(searchType,searchWord.toLowerCase());
+  // if(p.checkin=="true"){
+  //     query.equalTo("checkin","true") 
+  // }
+  // else if(p.checkin=="false"){
+  //     query.notEqualTo("checkin","true") 
+  // }
+  // // query.equalTo("isShow","1");
+  // query.count({
+  //   success: function(data){
+  //     p.maxPage = Math.ceil(data/p.size);
+  //     $('#maxCount').text(data);
+  //   }
+  // });
+  // query.descending("createdAt");
+  // query.limit(p['size']);
+  // query.skip((p['page']-1)*p['size']);
+  // query.find({
+  //   success: function(datas) {
+  //     $('#datatable tbody').html(p.htmlDatas(datas));
+  //     operateEvent();
+  //     p.maxPage>=1 && p.loadPagination();
+  //   },
+  //   error: function(datas, error) {
 
-    }
-  });  
+  //   }
+  // });  
 };
 p.htmlDatas = function(datas){
   var arr = [];
@@ -123,18 +123,18 @@ function operateEvent(){
         if(!id){
           return false;
         }
-        var query = new AV.Query(p.className);
-        query.get(id, {
-            success: function(data) {
-              var property = 'isShow';
-              var s = (data.get(property) == '1') ? '0' : '1';
-              data.set(property,s);
-              data.save();
-            },
-            error: function(user, error) {   
-                alert("操作失败 " + error.message);
-            }
-        });
+        // var query = new AV.Query(p.className);
+        // query.get(id, {
+        //     success: function(data) {
+        //       var property = 'isShow';
+        //       var s = (data.get(property) == '1') ? '0' : '1';
+        //       data.set(property,s);
+        //       data.save();
+        //     },
+        //     error: function(user, error) {   
+        //         alert("操作失败 " + error.message);
+        //     }
+        // });
     });
 
     $('#datatable .j_view').off().on('click', function (e) {
@@ -187,42 +187,42 @@ function createLateEvent(){
           'flagNumber': params.flagNumber,
           'political': params.political
         };
-        var user = new AV.User();
-        for (var property in params1){
-          user.set(property, params1[property]);
-        }
-        user.signUp(null, {
-          success: function(data) {
-            var Users = AV.Object.extend(p.className);
-            var u = new Users();
-            for (var property in params2){
-              u.set(property, params2[property]);
-            }
-            u.set('pid',data.id);
-            u.save(null, {
-              success: function(data) {
-                // userObj.logOut();
-                AV.User.logOut();
-                AV.User.logIn("admin", "admin", {
-                    success: function(user) {
-                      if(user && user.getObjectId()){
-                          waitRedirect('users.html',400);
-                      }
-                    },
-                    error: function(user, error) {
-                      fillAlert(errorEnum[error.code].msg);
-                    }
-                });
-              },
-              error: function(data, error) {
-                alert("添加失败 " + error.message);
-              }
-            });
-          },
-          error: function(user, error) {
-            alert("添加失败 " + error.message);
-          }
-        });
+        // var user = new AV.User();
+        // for (var property in params1){
+        //   user.set(property, params1[property]);
+        // }
+        // user.signUp(null, {
+        //   success: function(data) {
+        //     var Users = AV.Object.extend(p.className);
+        //     var u = new Users();
+        //     for (var property in params2){
+        //       u.set(property, params2[property]);
+        //     }
+        //     u.set('pid',data.id);
+        //     u.save(null, {
+        //       success: function(data) {
+        //         // userObj.logOut();
+        //         AV.User.logOut();
+        //         AV.User.logIn("admin", "admin", {
+        //             success: function(user) {
+        //               if(user && user.getObjectId()){
+        //                   waitRedirect('users.html',400);
+        //               }
+        //             },
+        //             error: function(user, error) {
+        //               fillAlert(errorEnum[error.code].msg);
+        //             }
+        //         });
+        //       },
+        //       error: function(data, error) {
+        //         alert("添加失败 " + error.message);
+        //       }
+        //     });
+        //   },
+        //   error: function(user, error) {
+        //     alert("添加失败 " + error.message);
+        //   }
+        // });
     });
 }
 

@@ -72,6 +72,9 @@ p.initEvent = function() {
 	    // 		misc.setCookie('userInfo',JSON.stringify(res.data),1);
 
 	    	
+	    		// superadmin
+	    		// misc.setCookie('userInfo',JSON.stringify({userRole:"SuperAdmin",username:"admin"}),1);
+
 	    	}
 	    },function(err){
     		misc.fillAlert($j_wait_tip,'服务器不给力哦!');

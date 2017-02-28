@@ -32,6 +32,7 @@ p.initEvent=function(){
 		        	title:'确定',
 		        	func: function() {
 						p.param2["isShow"]="0";
+						activity["isShow"]="0";
 						misc.func.activity.update_activity(p.param2,function(res){
 							Dialog.RemoveDialog();
 							if(res.code=="0"&&res.data){
@@ -61,6 +62,7 @@ p.initEvent=function(){
 		        	title:'确定',
 		        	func: function() {
 						p.param2["isShow"]="1";
+						activity["isShow"]="1";
 						misc.func.activity.update_activity(p.param2,function(res){
 							Dialog.RemoveDialog();
 							if(res.code=="0"&&res.data){
@@ -104,6 +106,7 @@ p.initEvent=function(){
 		        	title:'确定',
 		        	func: function() {
 						p.param2["isDelete"]="0";
+						activity["isDelete"]="0";
 						misc.func.activity.update_activity(p.param2,function(res){
 							Dialog.RemoveDialog();
 							if(res.code=="0"&&res.data){
@@ -135,6 +138,7 @@ p.initEvent=function(){
 		        	title:'确定',
 		        	func: function() {
 						p.param2["isDelete"]="1";
+						activity["isDelete"]="1";
 						misc.func.activity.update_activity(p.param2,function(res){
 							Dialog.RemoveDialog();
 							if(res.code=="0"&&res.data){
@@ -172,7 +176,9 @@ p.initEvent=function(){
 				"place":v2,
 				"limit":v3,
 				"admin":user.currentUser.pid,
-				"objectId":activity.objectId
+				"objectId":activity.objectId,
+				"isShow":activity.isShow,
+				"isDelete":activity.isDelete
 			};
 			misc.func.activity.update_activity(p.param2,function(res){
 				if(res.code=="0"&&res.data){

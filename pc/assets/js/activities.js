@@ -1,6 +1,6 @@
 var p = {
     'page':1,
-    'size':2
+    'size':10
 };
 p.init = function(){
     $j_pagenation=$('.j_pagenation');
@@ -16,15 +16,6 @@ p.loadPagination = function(){
   pg.printHtml(1);
 };
 p.initEvent = function(){
-  $('#j_create_new').on('click', function (e) {
-      e.stopPropagation();
-      e.preventDefault();
-      if($('.cancel').length<=0){
-          createRow('create');
-      }else{
-          alert('请先执行完当前的操作！');
-      }
-  });
   $('#search').on('click', function (e) {
       e.preventDefault();
       p.loadDatas();
@@ -34,20 +25,33 @@ p.initEvent = function(){
       var $this = $(this);
       var extra = parseInt($this.val()),
       act_id = $this.attr('data-id');
-      var query = new AV.Query('ActJoinLog');
-      query.get(act_id, {
-          success: function(data) {
-            data.set("extra",extra);
-            data.save().then(function(){
-              alert("加分成功");
-            }, function(){
-              alert("加分失败 ");
-            });
-          },
-          error: function(user, error) {   
-            alert("加分失败 " + error.message);
-          }
-      });
+      // var query = new AV.Query('ActJoinLog');
+      // query.get(act_id, {
+      //     success: function(data) {
+      //       data.set("extra",extra);
+      //       data.save().then(function(){
+      //         alert("加分成功");
+      //       }, function(){
+      //         alert("加分失败 ");
+      //       });
+      //     },
+      //     error: function(user, error) {   
+      //       alert("加分失败 " + error.message);
+      //     }
+      // });
+      // var param={
+      //   "objectId":act_id,
+      //   "extra":extra
+      // };
+      // misc.func.activity.update_act_join_log_by_id(param,function(res){
+      //   if(res.code=="0"){
+      //     alert("加分成功");
+      //   }else{
+      //     alert("加分失败 ");
+      //   }
+      // },function(err){
+      //   alert("加分失败 ");
+      // });
   });
 };
 p.loadDatas = function(){
@@ -64,18 +68,18 @@ p.loadDatas = function(){
   // searchWord && query.startsWith(searchType,searchWord.toLowerCase());
     var param={
         "isDelete":"0",
-        "isShow":"1",
+        "isShow":"-1",
         "limit":p.size,
         "page_index":p.page
     };
     if(userObj.currentUser.get("userRole")=="Admins"){
-        // param["admin"]=userObj.currentUser.pid;
+        param["admin"]=userObj.currentUser.pid;
     }
     misc.func.activity.get_activities(param,function(res){
         if(res.code=="0"&&res.data){
             p.pagination=res.pagination;
             p.maxPage=p.pagination.page_count;
-            $('#maxCount').text(p.maxPage);
+            $('#maxCount').text(p.pagination.count);
 
             activities=res.data;
             $('#datatable tbody').html(p.htmlDatas(activities));
@@ -103,7 +107,7 @@ function htmlRow(data,idx){
     var join_str = '<a class="join_act" style="margin-left:10px;" href="javascript:;">参加人员</a>';
     var del = '<a class="del_act" style="margin-left:10px;" href="javascript:;">删除</a>';
     var s = data.get("isShow") == "0" ? '<div style="float:left !important;" class="outter-block outter-border"><div class="circle-block boxshowdow"></div></div>':'<div style="float:left !important;" class="outter-block colorGreen"><div class="circle-block boxshowdow pull-right"></div></div>';
-    return ['<tr data-id="',data.id,'">',
+    return ['<tr data-name="',data.get("title"),'" data-id="',data.objectId,'">',
               '<td>',s,del,join_str,'</td>',
               '<td class="" style="color:#4b8df8;cursor:pointer;">',data.get("admin__name"),'</td>',
               '<td class="" style="color:#4b8df8;cursor:pointer;">',data.get("title"),'</td>',
@@ -116,30 +120,50 @@ function htmlRow(data,idx){
             '</tr>'].join('');
 }
 function operateEvent(){
-  $('#datatable a.del_act').off().on('click', function (e) {
+    $('#datatable a.del_act').off().on('click', function (e) {
         e.preventDefault();
+        
         if(confirm('不可撤销，确认删除该活动？')){
           var $this = $(this);
-          var curTR = $this.closest('tr'),
+          curTR = $this.closest('tr'),
           id = curTR.attr('data-id');
           if(!id){
             return false;
           }
-          // var query = new AV.Query(p.className);
-          // query.get(id, {
-          //     success: function(data) {
-          //       var property = 'isDelete';
-          //       var s = (data.get(property) == '1') ? '0' : '1';
-          //       data.set(property,s);
-          //       data.save();
-          //       curTR.fadeOut('fast', function() {
-                  
-          //       });
-          //     },
-          //     error: function(user, error) {   
-          //         alert("操作失败 " + error.message);
-          //     }
-          // });
+          misc.func.activity.get_activity({
+            "objectId": id
+          },function(res){
+            if(res.code){
+              alert('当前活动不存在！')
+            }else if(res.data){
+                activity=res.data;
+                if(activity && activity.objectId){
+                  var param2={
+                    "title":activity.title,
+                    "content":activity.content,
+                    "place":activity.place,
+                    "limit":activity.limit,
+                    "admin":activity.admin.pid,
+                    "objectId":activity.objectId,
+                    "isShow":activity.isShow,
+                    "isDelete":activity.isDelete
+                  };
+                  param2["isDelete"]="1";
+                  misc.func.activity.update_activity(param2,function(res){
+                    if(res.code=="0"&&res.data){
+                      curTR.fadeOut('fast', function() {});
+                    }else{
+                      alert("删除失败");
+                    }
+                  },function(err){
+                    alert("删除失败");
+                  });
+                }
+            }
+          },function(err){
+              alert('当前活动不存在！')
+          }); 
+          
         }
 
     });
@@ -159,37 +183,55 @@ function operateEvent(){
         if(!id){
           return false;
         }
-        // var query = new AV.Query(p.className);
-        // query.get(id, {
-        //     success: function(data) {
-        //       var property = 'isShow';
-        //       var s = (data.get(property) == '1') ? '0' : '1';
-        //       data.set(property,s);
-        //       data.save();
-        //     },
-        //     error: function(user, error) {   
-        //         alert("操作失败 " + error.message);
-        //     }
-        // });
-    });
 
-    // $('#datatable .j_view').off().on('click', function (e) {
-    //     e.preventDefault();
-    //     window.open('teacher.html?id='+$(this).parent().attr('data-id')+'#user');
-    // });
+        misc.func.activity.get_activity({
+          "objectId": id
+        },function(res){
+          if(res.code){
+            alert('当前活动不存在！')
+          }else if(res.data){
+              activity=res.data;
+              if(activity && activity.objectId){
+                var param2={
+                  "title":activity.title,
+                  "content":activity.content,
+                  "place":activity.place,
+                  "limit":activity.limit,
+                  "admin":activity.admin.pid,
+                  "objectId":activity.objectId,
+                  "isShow":activity.isShow,
+                  "isDelete":activity.isDelete
+                };
+                param2["isShow"]=(param2["isShow"]=='1')?'0':'1';
+
+                misc.func.activity.update_activity(param2,function(res){
+                  if(res.code=="0"&&res.data){
+                    alert("操作成功")
+                  }else{
+                    alert("操作失败");
+                  }
+                },function(err){
+                  alert("操作失败");
+                });
+              }
+          }
+        },function(err){
+            alert('当前活动不存在！')
+        });
+    });
 
     $('#datatable .join_act').off().on('click', function(e){
         e.preventDefault();
         var $par = $(this).parent().parent();
-        p.getJoinUsers($par.attr('data-id'));
+        p.getJoinUsers($par.attr('data-id'),$par.attr('data-name'));
     });
 }
-p.renderJoinUser=function(datas){
+p.renderJoinUser=function(datas,act_name){
     var l=datas?datas.length:0;
     var arrHtml=[];
     if(l>0){
       arrHtml = [
-          '<h3>',datas[0].get("activity")[1],'参加人员</h3>',
+          '<h3>',act_name,'参加人员</h3>',
       ];
       arrHtml.push('<ul class="users-list">');
       arrHtml.push([
@@ -204,16 +246,19 @@ p.renderJoinUser=function(datas){
           '</li>'
       ].join(''));
       for (var i = 0; i < l; i++) {
-        var extra = datas[i].get("extra");
+        datas[i].get=function(p){
+          return datas[i][p];
+        };
+        var extra = datas[i].get("extra")||0;
         arrHtml.push([
             '<li>',
               '<div>',i+1,'.</div>',
-              '<a target="_blank" href="./user.html?id=',datas[i].get("user")[0],'#user"><div>',datas[i].get("user")[2],'</div></a>',
-               '<div style="width:30%;">',datas[i].get("userGroupArr")[2],'</div>',
-              '<div style="width:20%;">',datas[i].get("userLocationArr").length>0?datas[i].get("userLocationArr")[2]:"暂无",'</div>',
+              '<a target="_blank" href="./user.html?id=',datas[i].get("user__pid"),'#user"><div>',datas[i].get("user__realname"),'</div></a>',
+               '<div style="width:30%;">',datas[i].get("user__group__name")||"暂无",'</div>',
+              '<div style="width:20%;">',datas[i].get("user__location__name")||"暂无",'</div>',
               '<div style="width:10%;">',datas[i].get("isInner")?"是":"否",'</div>',
               '<div style="width:8%;">',datas[i].get("star"),'星</div>',
-              '<div style="width:16%;"><select data-extra=',extra,' style="width:70px" data-id=',datas[i].id,'><option value=0>不加分</option><option ',(extra==1?"selected":""),' value=1>1分</option><option ',(extra==2?"selected":""),' value=2>2分</option><option ',(extra==3?"selected":""),' value=3>3分</option></select></div>',
+              '<div style="width:16%;"><select data-extra=',extra,' style="width:70px" data-id=',datas[i].objectId,'><option value=0>不加分</option><option ',(extra==1?"selected":""),' value=1>1分</option><option ',(extra==2?"selected":""),' value=2>2分</option><option ',(extra==3?"selected":""),' value=3>3分</option></select></div>',
             '</li>',            
         ].join(''));
       }
@@ -236,15 +281,16 @@ p.renderJoinUser=function(datas){
     $('.modal-footer').remove();
     $('.modal-body').css('margin-bottom', '50px');
 };
-p.getJoinUsers = function(act_id){
+p.getJoinUsers = function(act_id,act_name){
     misc.func.activity.get_act_join_log({
         "page_index": 1,
-        "limit": 100,
-        "admin":userObj.currentUser.get('pid')
+        "limit": 1000,
+        "user": "",
+        "admin": "",
+        "activity":act_id
     },function(res){
         if(res.code===0&&res.data){
-          debugger
-          p.renderJoinUser(res.data);
+          p.renderJoinUser(res.data,act_name);
         }
     },function(err){
 

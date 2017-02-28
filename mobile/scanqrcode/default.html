@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>报到积分流程</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="description" content="报到积分流程">
+		<meta name="keywords" content="报到积分流程">
+		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="format-detection" content="telephone=no,address=no,email=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	</head>
+	<body>
+		<script type="text/javascript">	
+			function getParam(key, type){
+				var type = type || 'search', str, arr;
+				switch(type){
+					case 'hash':
+						str = location.hash.replace(/^#/, '');
+					break;
+					case 'search':
+						str = location.search.replace(/^\?/, '');
+					break;
+				}
+				if(str == ''){
+					return null;
+				}
+				arr = str.split('&');
+				for(var i = 0, l = arr.length, tmp; i < l; i ++){
+					tmp = arr[i].split('=');
+					if(tmp[0] == key){
+						return tmp[1];
+					}
+				}
+			}
+			location.replace('http://card.weichongming.com/mobile/scanqrcode/?id='+(getParam("id")||""));
+		</script>
+		<script>
+		</script>
+	</body>
+</html>
+
+
+

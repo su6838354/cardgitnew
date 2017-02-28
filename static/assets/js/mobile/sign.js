@@ -68,7 +68,6 @@ p.initEvent=function() {
 	    		
 	    	}
 	    },function(err){
-	    	debugger
     		misc.fillAlert($j_wait_tip,'服务器不给力哦!');
     		$j_login_btn.html(p.l);
 			$j_login_btn.removeClass(misc.vars.disable);
